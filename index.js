@@ -38,7 +38,7 @@ app.post('/ftpfile', (req, res) => {
 
     console.log('request.body.ftpusername: ' + req.body.ftpusername);
 
-    if (fs.existsSync('./zip_dir')) {
+    if (fs.existsSync('./zip_dir')) { 
         //fall through.
         console.log('zip_dir already exists.');
     }
