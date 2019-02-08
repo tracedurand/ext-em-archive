@@ -38,6 +38,16 @@ app.post('/ftpfile', (req, res) => {
 
     console.log('request.body.ftpusername: ' + req.body.ftpusername);
 
+    if (fs.existsSync('./zip_dir')) {
+        //fall through.
+        console.log('zip_dir already exists.');
+    }
+    else
+    {
+        fs.mkdirSync('./zip_dir');
+        console.log('directory does not exist');
+    }
+
     //https://github.com/mscdex/ssh2
     //npm install ssh2
     var Client = require('ssh2').Client;
