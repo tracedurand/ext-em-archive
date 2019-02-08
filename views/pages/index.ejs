@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>  
+  <% include ../partials/header.ejs %>
+</head>
+
+<body onload="PopulateForm()">
+    <div class="slds-grid slds-wrap bg-white">
+        <div class="slds-col slds-size_1-of-1 "> <!--Create a full-width container-->
+            <div  class="slds-grid_vertical-stretch">
+            
+          <br><br>
+
+          <h2><div class="slds-card__header-link baseCard__header-title-container text-center">
+              <span class="slds-text-heading--small slds-truncate slds-m-right--xx-small"">Email Archive Jobs</span></div>
+          </h2>
+
+          <br>
+          <form method="POST" id="formLookup" name="formLookup" action="/ftpfile">
+
+            <div class="slds-form-element col-8 offset-md-2">
+                <label class="slds-form-element__label">FTP Server:</label>
+                <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="ftpserver" name="ftpserver" value="" />
+              </div>
+            </div>
+
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">Username:</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="ftpusername" name="ftpusername" value=""/>
+              </div>
+            </div>
+
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">Password:</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="ftppassword" name="ftppassword" value=""/>
+              </div>
+            </div>
+
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">Source Zip File and Directory (i.e. /EmailArchive/DateTime-2019_1_23_15_3-Client-1345408-Job-1406674-Batch-1-List-3217.zip):</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="ftpsourcefile" name="ftpsourcefile" value=""/>
+              </div>
+            </div>
+
+            <br>
+            
+            <div class="col-md-12 text-center"> 
+              <input type="submit" class="slds-button slds-button_brand" value="Retrieve Zip File from FTP Server" />
+            </div>
+
+          </form>
+
+          <br>
+          <hr>
+          <br>
+          <form method="POST" id="formUnzipFile" name="formUnzip" action="/unzipfile">
+            
+            <div class="col-md-12 text-center"> 
+              <input type="submit" class="slds-button slds-button_brand" value="Unzip File" />
+            </div>
+
+          </form>    
+
+          <br>
+          <hr>
+          <br>
+
+          <form method="POST" id="formMoveFilesToS3" name="formMoveFilesToS3" action="/movefilestoS3">
+
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">ACCESS_KEY_ID:</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="accesskeyid" name="accesskeyid" value=""/>
+              </div>
+            </div>
+
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">SECRET_ACCESS_KEY:</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="secretaccesskey" name="secretaccesskey" value=""/>
+              </div>
+            </div>
+            <br>
+            <div class="col-md-12 text-center"> 
+              <input type="submit" class="slds-button slds-button_brand" value="Move Files to S3" />
+            </div>
+
+          </form>            
+
+          <br>
+          <hr>
+          <br>
+          <form method="POST" id="formCreateSFObjects" name="formCreateSFObjects" action="/createSFObjects">
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">Client ID:</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="clientid" name="clientid" value=""/>
+              </div>
+            </div>
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">Client Secret:</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="clientsecret" name="clientsecret" value=""/>
+              </div>
+            </div>
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">Username:</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="username" name="username" value=""/>
+              </div>
+            </div>   
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">Password:</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="password" name="password" value=""/>
+              </div>
+            </div> 
+            <div class="slds-form-element col-8 offset-md-2">
+              <label class="slds-form-element__label">Security Token:</label>
+              <div class="slds-form-element__control">
+                <input type="text" class="slds-input" id="securitytoken" name="securitytoken" value=""/>
+              </div>
+            </div>                                                
+            <br>
+            <div class="col-md-12 text-center"> 
+              <input type="submit" class="slds-button slds-button_brand" value="Create Salesforce Objects with Bulk API" />
+            </div>
+
+          </form>    
+          
+
+          <br>
+          <hr>
+          <br>
+          <form method="POST" id="formDeleteTempFiles" name="formDeleteTempFiles" action="/deleteTempFiles">
+
+            <div class="col-md-12 text-center"> 
+              <input type="submit" class="slds-button slds-button_brand" value="Delete Temp Files" />
+            </div>
+
+          </form>     
+          
+          <br>
+          <br>
+    </div>
+  </div>
+</div>
+
+</body>
+
+<script>
+  function PopulateForm(){
+
+    var query = window.location.search.substring(1);
+    //alert(query);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        document.getElementById(decodeURIComponent(pair[0])).value = decodeURIComponent(pair[1]);
+    }
+  }
+  
+</script>
+</html>
